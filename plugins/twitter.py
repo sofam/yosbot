@@ -35,11 +35,11 @@ def twitter(inp, api_key=None):
         if index >= 20:
             return 'error: only supports up to the 20th tweet'
 
-        if re.match(r'^#', inp):
-            doing_search = True
-            request_url = "https://api.twitter.com/1.1/search/tweets.json?q=%s" % quote(inp)
-        else:
-            request_url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%s" % inp
+        #if re.match(r'^#', inp):
+        doing_search = True
+        request_url = "https://api.twitter.com/1.1/search/tweets.json?q=%s" % quote(inp)
+        #else:
+        #    request_url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=%s" % inp
 
     try:
         tweet = http.get_json(request_url, oauth=True, oauth_keys=api_key)
@@ -79,7 +79,7 @@ def twitter(inp, api_key=None):
     time = strftime('%Y-%m-%d %H:%M:%S',
                     strptime(time, '%a %b %d %H:%M:%S +0000 %Y'))
 
-    return "%s \x02%s\x02: %s" % (time, screen_name, text)
+    return "\x02%s\x02: %s" % (screen_name, text)
 
 
 @hook.api_key('twitter')
