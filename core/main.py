@@ -35,8 +35,6 @@ class Input(dict):
         def notice(msg):
             conn.cmd('NOTICE', [nick, msg])
 
-<<<<<<< HEAD
-=======
         def kick(target=None, reason=None):
             conn.cmd('KICK', [chan, target or nick, reason or ''])
 
@@ -46,18 +44,12 @@ class Input(dict):
         def unban(target=None):
             conn.cmd('MODE', [chan, '-b', target or host])
 
-
->>>>>>> 01192e0ddf80d8b9dcd13d6e472f85561daca033
         dict.__init__(self, conn=conn, raw=raw, prefix=prefix, command=command,
                       params=params, nick=nick, user=user, host=host,
                       paraml=paraml, msg=msg, server=conn.server, chan=chan,
                       notice=notice, say=say, reply=reply, pm=pm, bot=bot,
-<<<<<<< HEAD
-                      me=me, set_nick=set_nick, lastparam=paraml[-1])
-=======
                       kick=kick, ban=ban, unban=unban, me=me,
                       set_nick=set_nick, lastparam=paraml[-1])
->>>>>>> 01192e0ddf80d8b9dcd13d6e472f85561daca033
 
     # make dict keys accessible as attributes
     def __getattr__(self, key):

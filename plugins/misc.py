@@ -95,4 +95,4 @@ def urlinput(match, nick='', chan='', db=None, bot=None):
         soup = BeautifulSoup(page)
         title = soup.title.find(text=True).strip()
         if title != "" and title is not None:
-            return "\x02Title:\x02 {}".format(title)
+            return u"\x02Title:\x02 {}".format(title)

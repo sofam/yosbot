@@ -1,2 +1,5 @@
 lxml
-
+requests
+requests_oauthlib
+pillow
+BeautifulSoup4
