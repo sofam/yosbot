@@ -12,12 +12,9 @@ import json
 from util import hook, http
 from random import shuffle
 from PIL import Image, ImageDraw, ImageFont
-from requests_oauthlib import OAuth1
 
 comic_cache = {}
 comic_cache_buffer_size = 30
-tumblr_username = 'yosbot'
-tumblr_posturl = "http://api.tumblr.com/v2/blog/{}/post".format(tumblr_username)
 
 @hook.regex(r'.*')
 def comic_cacher(match, nick='', chan='', server=''):
@@ -88,18 +85,6 @@ def comic(inp, nick='', input=None, db=None, bot=None, server='', api_key=None):
     r = requests.post(url, data={'key': api_key, 'image':base64img, 'title':'Comic requested by ' + nick}, headers=headers, verify=False)
     val=json.loads(r.text)
 
-    tumblr_post = {
-        "type": "photo",
-        "state": "published",
-        "tags": ",".join(chars),
-        "caption": "requested by {}".format(nick),
-        "data": base64img
-    }
-    api_keys = bot.config.get('api_keys', {})
-    #tumblr_r = http.get_json(tumblr_posturl, post_data=tumblr_post, oauth=True, oauth_keys=api_keys['tumblr'])
-    auth = OAuth1(api_keys['tumblr']['consumer'], api_keys['tumblr']['consumer_secret'], api_keys['tumblr']['access'], api_keys['tumblr']['access_secret'])
-    tumblr_r = requests.post(tumblr_posturl, auth=auth)
-    print tumblr_r.text
     return val['data']['link']
 
 

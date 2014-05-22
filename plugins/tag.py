@@ -12,16 +12,19 @@ def sanitize(s):
     return re.sub(r'[\x00-\x1f]', '', s)
 
 
+# @hook.command
+# def munge(inp, munge_count=0):
+#     reps = 0
+#     for n in xrange(len(inp)):
+#         rep = character_replacements.get(inp[n])
+#         if rep:
+#             inp = inp[:n] + rep.decode('utf8') + inp[n + 1:]
+#             reps += 1
+#             if reps == munge_count:
+#                 break
+#     return inp
 @hook.command
 def munge(inp, munge_count=0):
-    reps = 0
-    for n in xrange(len(inp)):
-        rep = character_replacements.get(inp[n])
-        if rep:
-            inp = inp[:n] + rep.decode('utf8') + inp[n + 1:]
-            reps += 1
-            if reps == munge_count:
-                break
     return inp
 
 
